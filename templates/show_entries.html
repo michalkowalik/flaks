@@ -1,16 +1,39 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="container">
+  <div class="row">
   {% if session.logged_in %}
-    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-      <dl>
-        <dt>Title:
-        <dd><input type=text size=30 name=title>
-        <dt>Text:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
-      </dl>
+    <form action="{{ url_for('add_entry') }}" method=post>
+      <div class="row">
+        <div class="two columns">
+          Title
+        </div>
+        <div class="ten columns">
+          <input type=text size=30 name=title>
+        </div>
+      </div>
+      <div class="row">
+        <div class="two columns">
+          Text:
+        </div>
+        <div class="ten columns">
+          <textarea name=text rows=5 cols=40></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="two columns">
+          &nbsp;
+        </div>
+        <div class="ten columns">
+          <input class="button-primary" type=submit value=Share>
+        </div>
+      </div>
     </form>
   {% endif %}
+  </div>
+</div>
+<div class="white">
+  <div class="container">
   <ul class=entries>
   {% for entry in entries %}
     <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
@@ -18,4 +41,6 @@
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
   </ul>
+  </div>
+</div>
 {% endblock %}
